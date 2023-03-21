@@ -1,5 +1,16 @@
-<mat-toolbar class="top-navbar" color="primary">
-  <span>{{ title }}</span>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<div class="main">
+  <div color="primary">
+    <mat-toolbar class="navbar" color="primary">
+      <button routerLink="/" mat-button>{{ title }}</button>
+      <div class="space"></div>
+      <button routerLink="cart" mat-icon-button matBadge="3" matBadgeOverlap="true" matBadgeColor="accent">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button routerLink="auth" mat-icon-button>
+        <mat-icon>person</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+  
+  <router-outlet></router-outlet>
+</div>

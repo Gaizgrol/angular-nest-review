@@ -1,0 +1,30 @@
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="login-form">
+                    <mat-form-field>
+                        <mat-label>E-mail</mat-label>
+                        <input formControlName="email" matInput type="email"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Senha</mat-label>
+                        <input formControlName="password" matInput [type]="showPassword ? 'text' : 'password'"/>
+                        <button mat-icon-button matSuffix mat-icon-button (click)="showPassword = !showPassword" type="button">
+                            <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <div class="login-form-buttons">
+                    <button mat-raised-button color="accent" type="submit">Entrar</button>
+                    <button mat-button type="button">Cadastre-se</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

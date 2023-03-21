@@ -4,16 +4,25 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
+    loadChildren: async () => (await import('./shop/shop.module')).ShopModule,
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: async () => (await import('./auth/auth.module')).AuthModule,
   },
   {
     path: 'admin',
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
+    loadChildren: async () =>
+      (await import('./admin/admin.module')).AdminModule,
+  },
+  {
+    path: 'cart',
+    loadChildren: async () => (await import('./cart/cart.module')).CartModule,
+  },
+  {
+    path: 'profile',
+    loadChildren: async () =>
+      (await import('./profile/profile.module')).ProfileModule,
   },
 ];
 

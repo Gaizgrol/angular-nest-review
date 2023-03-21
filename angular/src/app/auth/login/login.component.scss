@@ -1,0 +1,15 @@
+.card {
+    max-width: 640px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+}
