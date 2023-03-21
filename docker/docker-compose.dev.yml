@@ -2,8 +2,8 @@ services:
   training-angular-nest-front:
     container_name: angular
     build:
-      context: .
-      dockerfile: ./dockerfile.angular
+      context: ../
+      dockerfile: docker/dockerfile.angular
     ports:
       - "4200:4200"
     volumes:
@@ -14,8 +14,8 @@ services:
   training-angular-nest-back:
     container_name: nest
     build:
-      context: .
-      dockerfile: ./dockerfile.nest
+      context: ../
+      dockerfile: docker/dockerfile.nest
     ports:
       - "3000:3000"
     volumes:
