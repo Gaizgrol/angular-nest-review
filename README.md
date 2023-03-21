@@ -10,7 +10,7 @@ Project made to review some concepts studied in one of my previous jobs, before 
 - Angular 15.2.4
 
 ## 🗒️ Description
-Basic generic marketplace application with stock management.
+Basic generic marketplace application with stock management and auth features.
 
 ### Users
 - Admin
