@@ -13,12 +13,29 @@ Project made to review some concepts studied in one of my previous jobs, before 
 Basic generic marketplace application with stock management and auth features.
 
 ### Users
-- Admin
-- Logged user
-- Anonymous user
+- **Anonymous customer**
+- **Logged customer**
+- **Admin**
 
 ### Use cases
-An admin can:
+
+An **Anonymous customer** can:
+- Search products by name or id
+- List all products, excluding ones unavailable to the public
+- Add products to cart
+- Register
+- Login
+
+A **Logged customer** can:
+- Persist previous products on cart when they were an anonymous user
+- Search product by name or id
+- List all products, excluding ones unavailable to the public
+- Add products to cart
+- Buy carts
+- See bought carts
+- Logout
+
+An **Admin** can:
 - Create a new product
 - Edit an existing product
 - Make a product unavailable to the public
@@ -27,12 +44,6 @@ An admin can:
 - List all products unavailable to the public
 - List product history
 - List product sales
-
-A Logged user can:
-- Search product by name or id
-- List all products, excluding ones unavailable to the public
-- Buy products
-
 
 ## 🖥️ Requirements
 ### Software
