@@ -1,0 +1,36 @@
+services:
+  training-angular-nest-front:
+    container_name: angular
+    build:
+      context: .
+      dockerfile: ./dockerfile.angular
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../angular:/app
+    working_dir: /app
+    entrypoint: ["ng", "serve", "--host", "0.0.0.0"]
+
+  training-angular-nest-back:
+    container_name: nest
+    build:
+      context: .
+      dockerfile: ./dockerfile.nest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../nestjs:/app
+    working_dir: /app
+    entrypoint: ["npm", "run", "start"]
+
+  training-angular-nest-database:
+    container_name: mysql
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: database
