@@ -1,6 +1,9 @@
 services:
   training-angular-nest-front:
     container_name: angular
+    depends_on:
+      training-angular-nest-back:
+        condition: service_healthy
     build:
       context: ../
       dockerfile: docker/dockerfile.angular
@@ -10,9 +13,18 @@ services:
       - ../angular:/app
     working_dir: /app
     entrypoint: ["ng", "serve", "--host", "0.0.0.0"]
+    networks:
+      - outer-network
 
   training-angular-nest-back:
     container_name: nest
+    depends_on:
+      training-angular-nest-database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 5s
+      retries: 30
     build:
       context: ../
       dockerfile: docker/dockerfile.nest
@@ -21,10 +33,23 @@ services:
     volumes:
       - ../nestjs:/app
     working_dir: /app
-    entrypoint: ["npm", "run", "start"]
+    entrypoint: ["npm", "run", "start:dev"]
+    environment:
+      DATABASE_HOST: training-angular-nest-database
+      DATABASE_PORT: 3306
+      DATABASE_NAME: database
+      DATABASE_USER: root
+      DATABASE_PASSWORD: 12345678
+    networks:
+      - outer-network
+      - inner-network
 
   training-angular-nest-database:
     container_name: mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      retries: 30
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -32,5 +57,11 @@ services:
       - "3306:3306"
       - "33060:33060"
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_DATABASE: database
+      MYSQL_ROOT_PASSWORD: 12345678
+    networks:
+      - inner-network
+
+networks:
+  outer-network:
+  inner-network:
